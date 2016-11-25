@@ -5,8 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
   },
-  "author": "Sovinty",
-  "license": "UNLICENSED",
+  "author": "Alain Metge",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.33",
