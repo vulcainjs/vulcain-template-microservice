@@ -1,0 +1,29 @@
+{
+  "transform": {
+    "replace" : [
+        { "filter" : "package.json", "context" : {} },
+	      { "filter" : "Dockerfile", "context" : {} },
+        { "filter" : ".vscode/launch.json", "context": {} },
+        { "filter" : "src/startup.ts", "context": {} },
+        { "filter" : ".idea/runConfigurations/Run_server.xml", "context": {} }
+	   ],
+    "rename": [
+    ],
+    "attributes": [
+    ]
+   },
+   "messages" : {
+       "end": [
+       ]
+   },
+   "scripts": {
+      "all" : {
+         "install": [
+            "npm install"
+          ],
+          "clone": [
+            "npm install"
+          ]
+       }
+   }
+}

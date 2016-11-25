@@ -1,0 +1,21 @@
+FROM node:6-slim
+
+RUN npm install gulp -g
+EXPOSE 8080
+
+COPY package.json /app/
+
+WORKDIR /app
+RUN npm install
+
+HEALTHCHECK --interval=30s --timeout=1s CMD curl -f http://localhost:8080/health || exit 1
+
+ENV VULCAIN_SERVICE_NAME=<%=project.namespace %>.<%= project.name %>
+ENV VULCAIN_SERVICE_VERSION=1.0
+
+COPY tsconfig.json package.json gulpFile.js tslint.json /app/
+COPY src /app/src
+
+RUN gulp default
+
+ENTRYPOINT ["node", "dist/index.js"]
