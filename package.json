@@ -1,5 +1,5 @@
 {
-  "name": "<%=project.namespace %>.<%= project.safeName %>",
+  "name": "<%= project.fullName %>",
   "version": "1.0.0",
   "description": "Vulcain micro-service",
   "main": "src/index.ts",
