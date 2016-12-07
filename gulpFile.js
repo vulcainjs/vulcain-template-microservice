@@ -38,8 +38,7 @@ gulp.task("compile-test", ['compile-ts'], function () {
         });
 
     var tsResult = gulp.src([
-        "./test/**/*.ts",
-        "./typings/index.d.ts"
+        "./test/**/*.ts"
     ], { base: 'test/' })
         .pipe(sourcemaps.init())
         .pipe(tsProject())
@@ -72,8 +71,7 @@ gulp.task("compile-ts", ['tslint', 'clean'], function () {
         });
 
     var tsResult = gulp.src([
-        "./src/**/*.ts",
-        "./typings/index.d.ts"
+        "./src/**/*.ts"
     ])
         .pipe(sourcemaps.init())
         .pipe(tsProject())
