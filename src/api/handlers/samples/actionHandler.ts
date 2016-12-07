@@ -8,11 +8,11 @@ import { Customer } from "./models";
 export class CustomerActionHandler extends DefaultActionHandler {
 
     @Action({ description: "Custom action", outputSchema: "string" }) // action = method name (minus Async)
-    async myActionAsync(customer: Customer) {
+    async myActionAsync() {
 
         // You can create a command and initialize its provider if a schema is provided
         const cmd = await this.requestContext.getCommandAsync("MyCommand", this.metadata.schema);
-        return cmd.executeAsync();
+        return cmd.executeAsync(1);
     }
 }
 

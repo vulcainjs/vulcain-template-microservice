@@ -4,23 +4,23 @@ import { System, IDynamicProperty, Command, HttpDependency, AbstractHttpCommand,
 @HttpDependency("http://jsonplaceholder.typicode.com/posts/1")
 @ConfigurationProperty("test", "number")
 class MyCommand extends AbstractHttpCommand {
-    private myvalue: IDynamicProperty<number>;
+    private myvalue: IDynamicProperty<string>;
 
     constructor( @Inject(DefaultServiceNames.Container) container: IContainer) {
         super(container);
         // Create a custom service dynamic property
-        this.myvalue = System.createServiceConfigurationProperty<number>("test", "number", 0);
+        this.myvalue = System.createServiceConfigurationProperty<string>("test", "string", "<nothing>");
     }
 
     // Execute command
-    async runAsync(a: number, b: number) {
-        let response = await this.getAsync("http://jsonplaceholder.typicode.com/posts/1");
+    async runAsync(a: number) {
+        let response = await this.getAsync("http://jsonplaceholder.typicode.com/posts/" + a);
         return response.body.body;
     }
 
     // Fallback method if error on runAsync
     // ** This is optional : Only if you want to provide a compensation for this command **
-    async fallbackAsync(a: number, b: number) {
+    async fallbackAsync(a: number) {
         let x = this.myvalue.value;
         return Promise.resolve("Default value is " + x);
     }

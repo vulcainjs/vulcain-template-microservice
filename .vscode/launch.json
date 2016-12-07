@@ -42,7 +42,6 @@
 				"VULCAIN_ENV": "<%=env%>",
 				"VULCAIN_SERVICE_NAME": "<%= project.fullName %>",
 				"VULCAIN_SERVICE_VERSION": "1.0",
-				"VULCAIN_TEST": "True",
                 "VULCAIN_TEST": "true"
             },
             "console": "integratedTerminal",
