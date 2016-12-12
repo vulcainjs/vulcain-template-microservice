@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Vulcain micro-service",
   "main": "src/index.ts",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "Alain Metge",
   "license": "Apache-2.0",
- "devDependencies": {
+  "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/express": "^4.0.34",
     "@types/mocha": "^2.2.33",
@@ -17,7 +16,6 @@
     "chai": "^3.5.0",
     "fs-extra": "^1.0.0",
     "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
     "gulp-istanbul": "^1.1.1",
     "gulp-mocha": "^3.0.1",
     "gulp-sourcemaps": "^1.9.0",
@@ -36,10 +34,10 @@
     "jsonwebtoken": "^7.1.9",
     "moment": "^2.15.2",
     "mongodb": "^2.2.12",
-    "uuid": "^3.0.1",
     "reflect-metadata": "^0.1.0",
     "rx": "^4.1.0",
     "unirest": "^0.5.0",
-    "vulcain-corejs": "^1.1.64"
+    "uuid": "^3.0.1",
+    "vulcain-corejs": "^1.1.70"
   }
 }

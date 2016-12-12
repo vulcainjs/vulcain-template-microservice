@@ -1,6 +1,6 @@
 import { EventHandler, Consume, AbstractEventHandler, EventData, System } from "vulcain-corejs";
 import * as RX from "rx";
-import { Customer } from "./models";
+import { Customer } from "../models/models";
 
 
 @EventHandler({ schema: "Customer", subscribeToDomain: System.domainName })

@@ -4,7 +4,6 @@
       <env name="VULCAIN_ENV" value="<%=env%>" />
       <env name="VULCAIN_SERVICE_VERSION" value="1.0" />
       <env name="VULCAIN_SERVICE_NAME" value="<%= project.fullName %>" />
-      <env name="VULCAIN_TEST" value="true" />
     </envs>
     <method>
       <option name="GulpBeforeRunTask" enabled="true">

@@ -9,5 +9,4 @@ template.manifest
 dist-test/
 coverage/
 npm-debug.log
-.vulcain
 build.sh

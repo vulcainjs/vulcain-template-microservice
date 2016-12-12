@@ -1,5 +1,5 @@
 import { ActionHandler, Action, DefaultActionHandler } from "vulcain-corejs";
-import { Customer } from "./models";
+import { Customer } from "../models/models";
 
 // -----------------------------------------------------------
 // Default crud action handlers

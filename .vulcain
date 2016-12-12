@@ -1,4 +1,9 @@
 {
+   "mode": "local",
    "alias": {
+   },
+   "mocks": {
+    "services": {},
+    "http": {}
    }
 }

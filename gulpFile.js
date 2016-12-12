@@ -9,7 +9,6 @@ var gulp = require("gulp"),
     mocha = require('gulp-mocha'),
     istanbul = require('gulp-istanbul'),
     sourcemaps = require('gulp-sourcemaps'),
-    concat = require("gulp-concat"),
     tslint = require("gulp-tslint");
 
 // Base root directory for source map
