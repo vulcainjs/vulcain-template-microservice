@@ -45,7 +45,7 @@ export class Startup extends Application {
             container.useMemoryProvider("data");
         }
         else {
-            container.useRabbitBusAdapter("rabbit");
+           // container.useRabbitBusAdapter("rabbit");
             container.useMongoProvider("mongo");
         }
     }

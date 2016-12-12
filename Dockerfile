@@ -18,4 +18,5 @@ COPY src /app/src
 
 RUN gulp default
 
-ENTRYPOINT ["node", "dist/index.js"]
+ENTRYPOINT ["node"]
+CMD ["dist/index.js"]
