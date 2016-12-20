@@ -1,6 +1,7 @@
 {
 	"version": "0.2.0",
 	"configurations": [
+		
 		{
 			"name": "Debug",
 			"type": "node",
@@ -19,7 +20,7 @@
 				"VULCAIN_SERVICE_VERSION": "1.0",
 				"NODE_ENV": "development"
 			},
-			"console": "integratedTerminal",
+			"console": "internalConsole",
 			"sourceMaps": true,
 			"outDir": "${workspaceRoot}/dist"
 		},
@@ -42,7 +43,7 @@
 				"VULCAIN_SERVICE_NAME": "<%= project.fullName %>",
 				"VULCAIN_SERVICE_VERSION": "1.0"
 			},
-			"console": "integratedTerminal",
+			"console": "internalConsole",
 			"sourceMaps": true,
 			"outDir": "${workspaceRoot}/dist-test"
 		},

@@ -2,14 +2,14 @@ import { System, IDynamicProperty, Command, HttpDependency, AbstractHttpCommand,
 
 @Command({ executionTimeoutInMilliseconds: 1500 })
 @HttpDependency("http://jsonplaceholder.typicode.com/posts/1")
-@ConfigurationProperty("test", "number")
+@ConfigurationProperty("test", "string")
 class MyCommand extends AbstractHttpCommand {
     private myvalue: IDynamicProperty<string>;
 
     constructor( @Inject(DefaultServiceNames.Container) container: IContainer) {
         super(container);
         // Create a custom service dynamic property
-        this.myvalue = System.createServiceConfigurationProperty<string>("test", "string", "<nothing>");
+        this.myvalue = System.createServiceConfigurationProperty<string>("test", "<nothing>");
     }
 
     // Execute command
