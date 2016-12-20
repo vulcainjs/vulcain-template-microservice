@@ -3,7 +3,7 @@ import { DynamicConfiguration } from "vulcain-corejs";
 // Configuration initialization must run first.
 DynamicConfiguration
     .init(60) // Polling interval
-    .addVulcainSource()
+    <%= meta.hub ? "" : "// "%>.addVulcainSource()
     .startPollingAsync()
     .then(() => { // Waiting for properties initialized
         // Initialization OK
