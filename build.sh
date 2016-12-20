@@ -7,7 +7,7 @@ REGISTRY=${VULCAIN_HUB:-$(sed -n 's/LABEL.VULCAIN_REGISTRY=\(.*\)/\1/p' Dockerfi
 # Get service information in Dockerfile
 SERVICE=${VULCAIN_SERVICE_NAME:-$(sed -n 's/ENV.VULCAIN_SERVICE_NAME=\(.*\)/\1/p' Dockerfile)}
 VERSION=${VULCAIN_SERVICE_VERSION:-$(sed -n 's/ENV.VULCAIN_SERVICE_VERSION=\(.*\)/\1/p' Dockerfile)}
-IMAGE=$SERVICE:${BUILD_VERSION:-"latest"}
+IMAGE=$SERVICE:${BUILD_VERSION:-"$VERSION.latest"}
 
 if [ -n "$TEAM" ]; then
     IMAGE=$TEAM/$IMAGE
@@ -35,7 +35,7 @@ if [ -n "$VULCAIN_SERVER" ]; then
             "team":"$TEAM",
             "service":"$SERVICE",
             "version":"$VERSION",
-            "buildVersion":"${BUILD_VERSION}"
+            "buildVersion":"${BUILD_VERSION:-"$VERSION.latest"}"
         }
     }
 EOF

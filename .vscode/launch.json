@@ -15,7 +15,7 @@
 			"runtimeArgs": [],
 			"env": {
 				"VULCAIN_ENV": "test",
-				"VULCAIN_SERVICE_NAME": "momo",
+				"VULCAIN_SERVICE_NAME": "<%= project.fullName %>",
 				"VULCAIN_SERVICE_VERSION": "1.0",
 				"NODE_ENV": "development"
 			},
@@ -40,8 +40,7 @@
 			"env": {
 				"VULCAIN_ENV": "<%=env%>",
 				"VULCAIN_SERVICE_NAME": "<%= project.fullName %>",
-				"VULCAIN_SERVICE_VERSION": "1.0",
-				"VULCAIN_TEST": "true"
+				"VULCAIN_SERVICE_VERSION": "1.0"
 			},
 			"console": "integratedTerminal",
 			"sourceMaps": true,
