@@ -11,8 +11,6 @@ var gulp = require("gulp"),
     sourcemaps = require('gulp-sourcemaps'),
     tslint = require("gulp-tslint");
 
-process.on('uncaughtException', console.error.bind(console));
-
 gulp.task('default', ['tslint', 'clean', 'compile-ts']);
 
 gulp.task('tslint', function () {
