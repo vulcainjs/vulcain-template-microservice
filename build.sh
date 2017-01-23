@@ -40,7 +40,7 @@ if [ -n "$VULCAIN_SERVER" ]; then
     }
 EOF
 
-    curl -s -H "Authorization: ApiKey $VULCAIN_TOKEN" -XPOST http://${VULCAIN_SERVER}/api \
+    curl -s -H "Authorization: ApiKey $VULCAIN_TOKEN" -XPOST http://${VULCAIN_SERVER}/api/ \
         -H "Content-Type: application/json" \
         --data '@data.json'
     rm data.json
