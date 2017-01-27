@@ -22,6 +22,6 @@ class MyCommand extends AbstractHttpCommand {
     // ** This is optional : Only if you want to provide a compensation for this command **
     async fallbackAsync(a: number) {
         let x = this.myvalue.value;
-        return Promise.resolve("Default value is " + x);
+        return "Default value is " + x;
     }
 }
