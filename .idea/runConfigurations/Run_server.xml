@@ -4,8 +4,8 @@
       <env name="VULCAIN_ENV" value="<%=env%>" />
       <env name="VULCAIN_SERVICE_VERSION" value="1.0" />
       <env name="VULCAIN_SERVICE_NAME" value="<%= project.fullName %>" />
-	    <env name="VULCAIN_ENV_MODE" value="local" />
-			<env name="VULCAIN_SERVER" value="<%= configServer %>" />
+      <env name="VULCAIN_ENV_MODE" value="local" />
+      <env name="VULCAIN_SERVER" value="<%= configServer %>" />
       <env name="VULCAIN_TOKEN" value="<%= configToken %>" />   
     </envs>
     <method>
