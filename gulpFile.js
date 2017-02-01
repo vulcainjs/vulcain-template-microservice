@@ -42,7 +42,7 @@ gulp.task("compile-test", ['compile-ts'], function () {
         });
 
     return tsResult.js
-        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: "." }))
+        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: "../test/" }))
         .pipe(gulp.dest("dist-test/"));
 });
 
@@ -78,7 +78,7 @@ gulp.task("compile-ts", ['tslint', 'clean'], function () {
         tsResult.dts
             .pipe(gulp.dest('dist')),
         tsResult.js
-            .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: "." }))
+            .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: "../src/" }))
             .pipe(gulp.dest('dist'))
     ]
     );
