@@ -1,13 +1,17 @@
 #!/bin/bash
 set -ex
 
-TEAM=${VULCAIN_TEAM:-$(sed -n 's/ENV.VULCAIN_TEAM=\(.*\)/\1/p' Dockerfile)}
+SERVER=${1:-$VULCAIN_SERVER} # Vulcain server
+TOKEN=${2:-$VULCAIN_TOKEN}
+TEAM=${3:-${VULCAIN_TEAM:-$(sed -n 's/LABEL.VULCAIN_TEAM=\(.*\)/\1/p' Dockerfile)}}
+VERSION=${4:?"You must provide a version"}
+
 REGISTRY=${VULCAIN_HUB:-$(sed -n 's/LABEL.VULCAIN_REGISTRY=\(.*\)/\1/p' Dockerfile)}
 
 # Get service information in Dockerfile
 SERVICE=${VULCAIN_SERVICE_NAME:-$(sed -n 's/ENV.VULCAIN_SERVICE_NAME=\(.*\)/\1/p' Dockerfile)}
-VERSION=${VULCAIN_SERVICE_VERSION:-$(sed -n 's/ENV.VULCAIN_SERVICE_VERSION=\(.*\)/\1/p' Dockerfile)}
-IMAGE=$SERVICE:${BUILD_VERSION:-"$VERSION.latest"}
+SERVICE_VERSION=${VULCAIN_SERVICE_VERSION:-$(sed -n 's/ENV.VULCAIN_SERVICE_VERSION=\(.*\)/\1/p' Dockerfile)}
+IMAGE=$SERVICE:${VERSION}
 
 if [ -n "$TEAM" ]; then
     IMAGE=$TEAM/$IMAGE
@@ -25,8 +29,8 @@ if [ -n "$REGISTRY" ]; then
     docker push $IMAGE
 fi
 
-if [ -n "$VULCAIN_SERVER" ]; then
-    echo "Notify vulcain at $VULCAIN_SERVER"
+if [ -n "$SERVER" ]; then
+    echo "Notify vulcain at $SERVER"
     cat >data.json <<-EOF
     {
         "schema": "Service",
@@ -34,13 +38,13 @@ if [ -n "$VULCAIN_SERVER" ]; then
         "params": {
             "team":"$TEAM",
             "service":"$SERVICE",
-            "version":"$VERSION",
-            "buildVersion":"${BUILD_VERSION:-"$VERSION.latest"}"
+            "version":"$SERVICE_VERSION",
+            "buildVersion":"${VERSION}"
         }
     }
 EOF
 
-    curl -s -H "Authorization: ApiKey $VULCAIN_TOKEN" -XPOST http://${VULCAIN_SERVER}/api/ \
+    curl -s -H "Authorization: ApiKey $TOKEN" -XPOST http://${SERVER}/api/ \
         -H "Content-Type: application/json" \
         --data '@data.json'
     rm data.json
