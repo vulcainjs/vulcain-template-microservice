@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-VERSION=${1:?"You must provide a version"}
+V=${1:${BUILD_VERSION:?"You must provide a version"}}
 SERVER=${2:-$VULCAIN_SERVER} # Vulcain server
 TOKEN=${3:-$VULCAIN_TOKEN}
 TEAM=${4:-${VULCAIN_TEAM:-$(sed -n 's/LABEL.VULCAIN_TEAM=\(.*\)/\1/p' Dockerfile)}}
@@ -11,6 +11,7 @@ REGISTRY=${VULCAIN_HUB:-$(sed -n 's/LABEL.VULCAIN_REGISTRY=\(.*\)/\1/p' Dockerfi
 # Get service information in Dockerfile
 SERVICE=${VULCAIN_SERVICE_NAME:-$(sed -n 's/ENV.VULCAIN_SERVICE_NAME=\(.*\)/\1/p' Dockerfile)}
 SERVICE_VERSION=${VULCAIN_SERVICE_VERSION:-$(sed -n 's/ENV.VULCAIN_SERVICE_VERSION=\(.*\)/\1/p' Dockerfile)}
+VERSION=${SERVICE_VERSION}.$V
 IMAGE=$SERVICE:${VERSION}
 
 if [ -n "$TEAM" ]; then
