@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-VERSION=${1:You must provide a version"}
+VERSION=${1:"You must provide a version"}
 SERVER=${2:-$VULCAIN_SERVER} # Vulcain server
 TOKEN=${3:-$VULCAIN_TOKEN}
 TEAM=${4:-${VULCAIN_TEAM:-$(sed -n 's/LABEL.VULCAIN_TEAM=\(.*\)/\1/p' Dockerfile)}}
