@@ -70,9 +70,6 @@ export class Startup extends Application {
      */
     async runAsync() {
 
-        // Set user test - Valid only in development
-        this.setTestUser();
-
         this.enableHystrixStream = enableHystrixStream;
 
         await super.start(port);
