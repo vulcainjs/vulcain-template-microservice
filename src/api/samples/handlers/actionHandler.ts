@@ -4,7 +4,7 @@ import { Customer } from "../models/models";
 // -----------------------------------------------------------
 // Default crud action handlers
 // -----------------------------------------------------------
-@ActionHandler({ async: false, scope: "?", schema: Customer })
+@ActionHandler({ async: false, scope: "?", schema: "Customer" })
 export class CustomerActionHandler extends DefaultActionHandler {
 
     @Action({ description: "Custom action", outputSchema: "string" }) // action = method name (minus Async)
