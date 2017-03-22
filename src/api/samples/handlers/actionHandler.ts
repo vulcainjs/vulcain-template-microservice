@@ -1,5 +1,7 @@
 import { ActionHandler, Action, DefaultActionHandler, Inject } from "vulcain-corejs";
 import { Customer } from "../models/models";
+import { CustomerQueryHandler } from './queryHandler';
+import { IMyCommand } from '../commands/mycommand';
 
 // -----------------------------------------------------------
 // Default crud action handlers
@@ -15,9 +17,9 @@ export class CustomerActionHandler extends DefaultActionHandler {
         // The following line shows how to make an in-process handler method call
         let cus = await this.customers.getAllAsync();
         
-        // You can create a command and initialize its provider if a schema is provided
-        const cmd = await this.requestContext.getCommandAsync("MyCommand", this.metadata.schema);
-        return cmd.executeAsync(1);
+        // Using a command
+        const cmd = await this.createCommandAsync<IMyCommand>("MyCommand");
+        return cmd.runAsync(1);
     }
 }
 
