@@ -1,9 +1,13 @@
 import { System, IDynamicProperty, Command, HttpDependency, AbstractHttpCommand, Inject, IContainer, DefaultServiceNames, ConfigurationProperty } from "vulcain-corejs";
 
+export interface IMyCommand {
+    runAsync(a: number): Promise<string>;
+}
+
 @Command({ executionTimeoutInMilliseconds: 1500 })
 @HttpDependency("http://jsonplaceholder.typicode.com/posts/1")
 @ConfigurationProperty("test", "string")
-class MyCommand extends AbstractHttpCommand {
+class MyCommand extends AbstractHttpCommand implements IMyCommand {
     private myvalue: IDynamicProperty<string>;
 
     constructor( @Inject(DefaultServiceNames.Container) container: IContainer) {
