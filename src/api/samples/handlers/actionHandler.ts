@@ -15,7 +15,7 @@ export class CustomerActionHandler extends DefaultActionHandler {
     @Action({ description: "Custom action", outputSchema: "string" }) // action = method name (minus Async)
     async myActionAsync() {
         // The following line shows how to make an in-process handler method call
-        let cus = await this.customers.getAllAsync();
+        let customerList = await this.customers.getAllAsync();
         
         // Using a command
         const cmd = await this.createCommandAsync<IMyCommand>("MyCommand");
