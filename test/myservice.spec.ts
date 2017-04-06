@@ -1,51 +1,30 @@
 import { expect } from 'chai';
-import {TestContainer, DefaultActionHandler, DefaultQueryHandler, QueryHandler, ActionHandler, Model, Property, RequestContext, IContainer} from 'vulcain-corejs';
+import { TestContext } from 'vulcain-corejs';
+import { CustomerQueryHandler } from '../dist/api/samples/handlers/queryHandler';
+import { CustomerActionHandler } from '../dist/api/samples/handlers/actionHandler';
+import { Customer } from "../dist/api/samples/models/models";
 
-@Model()
-class TestModel {
-    @Property({type:"string", required: true})
-    firstName: string;
-    @Property({type:"string", required: true, isKey:true})
-    lastName: string;
-    @Property({type:"number"})
-    date: number;
-}
-
-@ActionHandler({schema: TestModel, scope:"?"})
-class TestActionHandler extends DefaultActionHandler {
-    constructor(container: IContainer) {
-        super(container);
-        this.requestContext = RequestContext.createMock(container);
-    }
-}
-
-@QueryHandler({scope:"?", schema:TestModel, serviceName:"TestQueryService"})
-class TestQueryHandler extends DefaultQueryHandler<TestModel> {
-    constructor(container: IContainer) {
-        super(container);
-        this.requestContext = RequestContext.createMock(container);
-    }
-}
-
-// Share TestModel for all tests
-let container = new TestContainer("Test");
+// Create a test context with an in-memory provider
+// and a test authorization policy (ignore authrorization).
+// You can add a test user with .setUser()
+let context = new TestContext(Customer); // Initialize context with required model and service
 
 describe("Default action handler", function () {
 
     it("should register query handler as a service", () => {
-        expect(container.get("TestQueryService")).to.be.not.null;
+        // Test global registered services
+        expect(context.rootContainer.get("CustomerQueryHandler")).to.be.not.null;
     });
 
     it("should create an entity", async function () {
-        let actionHandler = new TestActionHandler(container);
+        // Create an handler in a scoped (request) context
+        let actionHandler = context.createHandler<CustomerActionHandler>(CustomerActionHandler);
         let entity = { firstName: "elvis", lastName: "Presley" };
         await actionHandler.createAsync(entity);
-        let query = new TestQueryHandler(container);
+
+        let query = context.getService<CustomerQueryHandler>(CustomerQueryHandler.name); // Get a service within the scoped context
         entity = await query.getAsync("Presley");
+
         expect(entity).to.be.not.null;
     });
-
 });
-
-
-

@@ -1,7 +1,7 @@
 {
 	"rules": {
-		"no-unused-expression": true,
 		"no-duplicate-variable": true,
+		"no-unused-variable": ["all"],
 		"curly": true,
 		"class-name": true,
 		"semicolon": ["always"],
