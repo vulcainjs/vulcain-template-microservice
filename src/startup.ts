@@ -4,7 +4,7 @@ import { Application, IContainer, System } from "vulcain-corejs";
 const domain = "<%=project.namespace %>";
 
 // Default configurations
-let port = 8080;                      // server port
+let port = process.env.PORT || 8080;  // server port
 const enableHystrixStream = false;    // enable hystrix monitoring
 
 /**
