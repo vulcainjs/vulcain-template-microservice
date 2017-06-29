@@ -1,4 +1,4 @@
-# Builder image
+# Builder image - Needs docker >= 17.06
 FROM node:8-slim AS builder
 
 RUN npm install gulp -g
