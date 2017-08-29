@@ -1,5 +1,5 @@
 {
-  "name": "<%= project.fullName %>",
+  "name": "service2",
   "version": "1.0.0",
   "description": "Vulcain micro-service",
   "main": "src/index.ts",
@@ -39,6 +39,6 @@
     "rxjs": "^5.1.0",
     "unirest": "^0.5.0",
     "uuid": "^3.0.1",
-    "vulcain-corejs": "^1.1.107"
+    "vulcain-corejs": "^1.1.142"
   }
 }

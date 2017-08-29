@@ -6,8 +6,8 @@ export interface IMyCommand {
 
 @Command({ executionTimeoutInMilliseconds: 1500 })
 @HttpDependency("http://jsonplaceholder.typicode.com/posts/1")
-@ConfigurationProperty("test", "string")
 class MyCommand extends AbstractHttpCommand implements IMyCommand {
+    @ConfigurationProperty("test", "string")
     private myvalue: IDynamicProperty<string>;
 
     constructor( @Inject(DefaultServiceNames.Container) container: IContainer) {

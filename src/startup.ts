@@ -1,7 +1,7 @@
 import { Application, IContainer, System } from "vulcain-corejs";
 
 // The domain is mandatory
-const domain = "<%=project.namespace %>";
+const domain = "vulcain";
 
 // Default configurations
 let port = 8080;                      // server port
@@ -42,7 +42,7 @@ export class Startup extends Application {
      */
     initializeDefaultServices(container: IContainer) {
         if (System.isDevelopment) { // Developper desktop
-            container.useMemoryProvider("data");
+            container.useMemoryProvider();
         }
         else {
            // container.useRabbitBusAdapter();

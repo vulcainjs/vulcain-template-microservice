@@ -11,6 +11,9 @@ export class CustomerActionHandler extends DefaultActionHandler {
     @Inject()
     customers: CustomerQueryHandler;
 
+    createAsync(entity) {
+        return super.createAsync(entity);
+    }
     @Action({ description: "Custom action", outputSchema: "string" }) // action = method name (minus Async)
     async myActionAsync() {
         // The following line shows how to make an in-process handler method call
