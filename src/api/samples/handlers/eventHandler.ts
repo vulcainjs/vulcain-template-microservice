@@ -16,14 +16,4 @@ export class CustomerEventHandler extends AbstractEventHandler {
        // this.requestContext.sendCustomEvent("x", {}, "Customer");
         return true;
     }
-
-    @Consume({
-        description: "Simple event handler", subscribeToAction: "delete",
-        filter: (events ) => events.filter(e=>e.schema==="Customer")
-    })
-    async toto(customer: Customer) {
-
-        console.log(`${customer.lastName} ${customer.firstName} deleted`);
-        return true;
-    }
 }
