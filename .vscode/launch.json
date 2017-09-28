@@ -5,7 +5,7 @@
 			"name": "Debug",
 			"type": "node",
 			"request": "launch",
-			"smartStep": false,
+			"smartStep": true,
 			"program": "${workspaceRoot}/src/index.ts",
 			"stopOnEntry": false,
 			"preLaunchTask": "compile-ts",
@@ -14,11 +14,9 @@
 			"runtimeExecutable": null,
 			"runtimeArgs": [],
 			"env": {
-				"VULCAIN_ENV": "<%= env %>",				
+				"VULCAIN_ENV": "<%= env %>",
 				"VULCAIN_SERVICE_NAME": "<%= project.fullName %>",
-				"VULCAIN_SERVICE_VERSION": "1.0",
-				"VULCAIN_SERVER": "<%= configServer %>",
-                		"VULCAIN_TOKEN": "<%= configToken %>",	
+				"VULCAIN_SERVICE_VERSION": "1.0"
 			},
 			"console": "internalConsole",
 			"sourceMaps": true,
@@ -42,7 +40,7 @@
 				"test"
 			],
 			"env": {
-				"VULCAIN_ENV": "<%= env %>",				
+				"VULCAIN_ENV": "<%= env %>",
 				"VULCAIN_SERVICE_NAME": "<%= project.fullName %>",
 				"VULCAIN_SERVICE_VERSION": "1.0"
 			},

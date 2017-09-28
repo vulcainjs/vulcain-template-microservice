@@ -4,7 +4,6 @@
       { "filter" : "package.json", "context" : {} },
       { "filter" : "Dockerfile", "context" : {} },
       { "filter" : ".vscode/launch.json", "context": {} },
-      { "filter" : "src/startup.ts", "context": {} },
       { "filter" : "src/index.ts", "context": {} },
       { "filter" : ".idea/runConfigurations/Run_server.xml", "context": {} }
 	   ],

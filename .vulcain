@@ -5,5 +5,8 @@
    "mocks": {
     "services": {},
     "http": {}
+   },
+   "config": {
+
    }
 }

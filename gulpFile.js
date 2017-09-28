@@ -36,14 +36,12 @@ gulp.task('test', ['compile-test'], function () {
 
 gulp.task("compile-test", ["istanbul:hook"], function () {
     var tsProject = ts.createProject(
-        './tsconfig.json',
+        './test/tsconfig.json',
         {
             typescript: require('typescript')    // must be a project package dependency
         });
 
-    var tsResult = gulp.src([
-        "./test/**/*.ts"
-    ], { base: 'test/' })
+    var tsResult = tsProject.src()
         .pipe(sourcemaps.init())
         .pipe(tsProject())
         .once("error", function () {
@@ -51,8 +49,8 @@ gulp.task("compile-test", ["istanbul:hook"], function () {
         });
 
     return tsResult.js
-        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: "../test/" }))
-        .pipe(gulp.dest("dist-test/"));
+        .pipe(sourcemaps.write('../dist-test', { includeContent: false, sourceRoot: "../test" }))
+        .pipe(gulp.dest("dist-test"));
 });
 
 gulp.task("istanbul:hook", ['compile-ts'], function () {
@@ -69,14 +67,12 @@ gulp.task("istanbul:hook", ['compile-ts'], function () {
 
 gulp.task("compile-ts", ['tslint', 'clean'], function () {
     var tsProject = ts.createProject(
-        './tsconfig.json',
+        './src/tsconfig.json',
         {
             typescript: require('typescript')    // must be a project package dependency
         });
 
-    var tsResult = gulp.src([
-        "./src/**/*.ts"
-    ])
+    var tsResult = tsProject.src()
         .pipe(sourcemaps.init())
         .pipe(tsProject())
         .once("error", function () {
@@ -87,7 +83,7 @@ gulp.task("compile-ts", ['tslint', 'clean'], function () {
         tsResult.dts
             .pipe(gulp.dest('dist')),
         tsResult.js
-            .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: "../src/" }))
+            .pipe(sourcemaps.write('../dist', { includeContent: false, sourceRoot: "../src" }))
             .pipe(gulp.dest('dist'))
     ]
     );

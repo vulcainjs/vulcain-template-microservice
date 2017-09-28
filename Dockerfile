@@ -29,6 +29,7 @@ WORKDIR /app
 COPY --from=builder /app/package.json /app
 COPY --from=builder /app/dist /app/dist
 
+# Remove dev dependencies
 RUN npm install --only=production; cd node_modules; \
   find . -name examples | xargs rm -fr; \
   find . -name doc | xargs rm -fr; \

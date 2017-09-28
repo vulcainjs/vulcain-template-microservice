@@ -1,16 +1,21 @@
-import { DynamicConfiguration } from "vulcain-corejs";
+import { ApplicationBuilder, System } from "vulcain-corejs";
 
-// Configuration initialization must run first.
-DynamicConfiguration
-    .init(60) // Polling interval
-    .addVulcainSource()
-    .startPollingAsync()
-    .then(() => { // Waiting for properties initialized
-        // Initialization OK
-        let startup = require("./startup"); // lazy loading
-        new startup.Startup().runAsync();
-    })
-    .catch((e: Error) => {
-        console.log("Bootstrap error " + e.stack + ". Process stopped");
-        process.exit(1);
-    });
+// The domain is mandatory
+const domain = "<%=project.namespace %>";
+
+// Default configuration
+let port = 8080;
+
+let builder = new ApplicationBuilder(domain);
+// Uncomment the following lines to set specific data provider
+// Default is memory without persistence
+/*
+if (System.isDevelopment) { // Developper desktop
+    builder.useMemoryProvider();
+}
+else {
+    builder.useRabbitmqBus();
+    builder.useMongoProvider('mongo');
+}
+*/
+builder.runAsync(port);

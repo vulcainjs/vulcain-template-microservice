@@ -1,19 +1,15 @@
 import { System, IDynamicProperty, Command, HttpDependency, AbstractHttpCommand, Inject, IContainer, DefaultServiceNames, ConfigurationProperty } from "vulcain-corejs";
 
-export interface IMyCommand {
-    runAsync(a: number): Promise<string>;
-}
-
 @Command({ executionTimeoutInMilliseconds: 1500 })
 @HttpDependency("http://jsonplaceholder.typicode.com/posts/1")
-class MyCommand extends AbstractHttpCommand implements IMyCommand {
+export class MyCommand extends AbstractHttpCommand  {
     @ConfigurationProperty("test", "string")
     private myvalue: IDynamicProperty<string>;
 
     constructor( @Inject(DefaultServiceNames.Container) container: IContainer) {
         super(container);
         // Create a custom service dynamic property
-        this.myvalue = System.createServiceConfigurationProperty<string>("test", "<nothing>");
+        this.myvalue = System.createChainedConfigurationProperty<string>("test", "<nothing>");
     }
 
     // Execute command

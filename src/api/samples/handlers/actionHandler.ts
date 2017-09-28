@@ -1,6 +1,6 @@
 import { ActionHandler, Action, DefaultActionHandler, Inject } from "vulcain-corejs";
 import { CustomerQueryHandler } from './queryHandler';
-import { IMyCommand } from '../commands/mycommand';
+import { MyCommand } from '../commands/mycommand';
 
 // -----------------------------------------------------------
 // Default crud action handlers
@@ -21,7 +21,7 @@ export class CustomerActionHandler extends DefaultActionHandler {
         let customerList = await this.customers.getAllAsync();
 
         // Using a command
-        const cmd = await this.createCommandAsync<IMyCommand>("MyCommand");
+        const cmd = this.createCommand<MyCommand>("MyCommand");
         return cmd.runAsync(1);
     }
 }
