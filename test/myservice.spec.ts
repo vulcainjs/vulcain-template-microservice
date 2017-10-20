@@ -20,10 +20,10 @@ describe("Default action handler", function () {
         // Create an handler in a scoped (request) context
         let actionHandler = context.createHandler<CustomerActionHandler>(CustomerActionHandler);
         let entity = { firstName: "elvis", lastName: "Presley" };
-        await actionHandler.createAsync(entity);
+        await actionHandler.create(entity);
 
         let query = context.getService<CustomerQueryHandler>(CustomerQueryHandler.name); // Get a service within the scoped context
-        entity = await query.getAsync("Presley");
+        entity = await query.get("Presley");
 
         expect(entity).to.be.not.null;
     });

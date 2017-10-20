@@ -13,14 +13,14 @@ export class MyCommand extends AbstractHttpCommand  {
     }
 
     // Execute command
-    async runAsync(a: number) {
-        let response = await this.getAsync("http://jsonplaceholder.typicode.com/posts/" + a);
+    async run(a: number) {
+        let response = await this.get("http://jsonplaceholder.typicode.com/posts/" + a);
         return response.body.body;
     }
 
-    // Fallback method if error on runAsync
+    // Fallback method if error on run
     // ** This is optional : Only if you want to provide a compensation for this command **
-    async fallbackAsync(a: number) {
+    async fallback(a: number) {
         let x = this.myvalue.value;
         return "Default value is " + x;
     }

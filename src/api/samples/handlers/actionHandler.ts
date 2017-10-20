@@ -11,18 +11,18 @@ export class CustomerActionHandler extends DefaultActionHandler {
     @Inject()
     customers: CustomerQueryHandler;
 
-    createAsync(entity) {
-        return super.createAsync(entity);
+    create(entity) {
+        return super.create(entity);
     }
-    @Action({ description: "Custom action", outputSchema: "string" }) // action = method name (minus Async)
-    async myActionAsync() {
+    @Action({ description: "Custom action", outputSchema: "string" }) // action = method name
+    async myAction() {
         // The following line shows how to make an in-process handler method call
         // tslint:disable-next-line:no-unused-variable
-        let customerList = await this.customers.getAllAsync();
+        let customerList = await this.customers.getAll();
 
         // Using a command
         const cmd = this.createCommand<MyCommand>("MyCommand");
-        return cmd.runAsync(1);
+        return cmd.run(1);
     }
 }
 

@@ -18,4 +18,4 @@ else {
     builder.useMongoProvider('mongo');
 }
 */
-builder.runAsync(port);
+builder.run(port);
