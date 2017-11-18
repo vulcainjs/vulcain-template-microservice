@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { TestContext } from 'vulcain-corejs';
-import { CustomerQueryHandler } from '../dist/api/samples/handlers/queryHandler';
-import { CustomerActionHandler } from '../dist/api/samples/handlers/actionHandler';
-import { Customer } from "../dist/api/samples/models/models";
+import { CustomerQueryHandler } from '../src/api/samples/handlers/queryHandler';
+import { CustomerActionHandler } from '../src/api/samples/handlers/actionHandler';
+import { Customer } from "../src/api/samples/models/models";
 
 // Create a test context with an in-memory provider
 // and a test authorization policy (ignore authrorization).
@@ -20,10 +20,10 @@ describe("Default action handler", function () {
         // Create an handler in a scoped (request) context
         let actionHandler = context.createHandler<CustomerActionHandler>(CustomerActionHandler);
         let entity = { firstName: "elvis", lastName: "Presley" };
-        await actionHandler.createAsync(entity);
+        await actionHandler.create(entity);
 
         let query = context.getService<CustomerQueryHandler>(CustomerQueryHandler.name); // Get a service within the scoped context
-        entity = await query.getAsync("Presley");
+        entity = await query.get("Presley");
 
         expect(entity).to.be.not.null;
     });

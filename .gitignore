@@ -1,9 +1,6 @@
 node_modules/
-typings/
 dist/
 .DS_Store
 data/
-dist-test/
-coverage/
 npm-debug.log
 package-lock.json

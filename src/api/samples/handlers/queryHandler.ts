@@ -1,8 +1,6 @@
 import { Customer } from "../models/models";
 import { QueryHandler, DefaultQueryHandler, Query } from "vulcain-corejs";
 
-export class Invitation { }
-
 // -----------------------------------------------------------
 // Defaut query handlers (get/search)
 // -----------------------------------------------------------

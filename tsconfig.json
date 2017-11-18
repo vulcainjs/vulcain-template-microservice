@@ -7,9 +7,12 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "target": "es6",
-        "watch": false
+        "sourceMap": true,
+        "outDir": "dist",
+        "rootDir": "."
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "dist"
     ]
 }

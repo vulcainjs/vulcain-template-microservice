@@ -1,4 +1,4 @@
-import { ActionHandler, Action, DefaultActionHandler, Inject } from "vulcain-corejs";
+import { ActionHandler, CommandFactory, Action, DefaultActionHandler, Inject } from "vulcain-corejs";
 import { CustomerQueryHandler } from './queryHandler';
 import { MyCommand } from '../commands/mycommand';
 
@@ -11,18 +11,15 @@ export class CustomerActionHandler extends DefaultActionHandler {
     @Inject()
     customers: CustomerQueryHandler;
 
-    createAsync(entity) {
-        return super.createAsync(entity);
-    }
     @Action({ description: "Custom action", outputSchema: "string" }) // action = method name (minus Async)
     async myActionAsync() {
         // The following line shows how to make an in-process handler method call
         // tslint:disable-next-line:no-unused-variable
-        let customerList = await this.customers.getAllAsync();
+        let customerList = await this.customers.getAll();
 
         // Using a command
-        const cmd = this.createCommand<MyCommand>("MyCommand");
-        return cmd.runAsync(1);
+        const cmd = CommandFactory.createCommand<MyCommand>(this.context, "MyCommand");
+        return cmd.exec(1);
     }
 }
 

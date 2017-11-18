@@ -1,12 +1,8 @@
 node_modules/
-typings/
 dist/
 .DS_Store
 data/
 .vscode/
-.idea/
 template.manifest
-dist-test/
-coverage/
 npm-debug.log
 build.sh

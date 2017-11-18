@@ -1,17 +1,15 @@
 # Builder image - Needs docker >= 17.06
 FROM node:8-slim AS builder
 
-RUN npm install gulp -g
-
 COPY package.json /app/
 
 WORKDIR /app
 RUN npm install
 
-COPY tsconfig.json gulpFile.js tslint.json /app/
+COPY tsconfig.json /app/
 COPY src /app/src
 
-RUN gulp default
+RUN npm run build
 
 # ---------------------------------------------------
 # Final image
@@ -27,7 +25,7 @@ HEALTHCHECK --interval=30s --timeout=1s CMD curl -f http://localhost:8080/health
 WORKDIR /app
 
 COPY --from=builder /app/package.json /app
-COPY --from=builder /app/dist /app/dist
+COPY --from=builder /app/dist/src /app/dist
 
 # Remove dev dependencies
 RUN npm install --only=production; cd node_modules; \

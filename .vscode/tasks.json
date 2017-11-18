@@ -1,19 +1,15 @@
 {
-    "version": "0.1.0",
-    "command": "gulp",
-    "isShellCommand": true,
+    "version": "2.0.0",
     "tasks": [
         {
-            "taskName": "default",
-            "isBuildCommand": true,
-            "isWatching": false,
-            "problemMatcher": "$tsc"
-        },
-        {
-            "taskName": "test",
-            "isTestCommand": true,
-            "isWatching": false,
-            "problemMatcher": "$tsc"
+            "identifier": "build",
+            "type": "npm",
+            "script": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }
